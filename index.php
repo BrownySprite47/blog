@@ -11,7 +11,7 @@ function __autoload($className)
 {
     $filename = 'core/'.str_replace('\\', '/', $className) . '.php';
     if (!file_exists($filename)){
-        throw new Exception('Class [' . $className . '] Not Found', 1);
+        throw new \Exception('Class [' . $className . '] Not Found', 1);
     }
 
     require_once $filename;
@@ -26,16 +26,17 @@ try{
 
     $filename = 'core/'.str_replace('\\', '/', $controller) . '.php';
     if (!file_exists($filename)){
-        throw new \Library\HttpException('Page Not Found!');
+        throw new \Library\HttpException('Not found', '404');
     }else{
-        $controller = new $controller;
+        $controller = new $controller();
+        if (!method_exists($controller, $action)){
+            throw new \Library\HttpException('Not found', '404');
+        }else{
+            $controller->$action();
+        }
     }
 
-    if (!method_exists($controller, $action)){
-        throw new Exception('Not found', '404');
-    }else{
-        $controller->$action();
-    }
+
 }catch (\Library\HttpException $e){
     header("HTTP/1.1 ".$e->getCode().' '.$e->getMessage());
     die('Page Not Found');
