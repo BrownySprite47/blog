@@ -8,14 +8,27 @@
 
 namespace Controllers;
 use Base\Controller;
-use Library\Db;
+
 
 class ControllerMain extends Controller
 {
     public function actionIndex()
     {
-        $db = Db::getDb();
-        var_dump(dirname(__DIR__));
-        echo 'Index Page';
+
+    }
+
+    public function actionLogin()
+    {
+
+    }
+
+    public function actionLogout()
+    {
+
+    }
+
+    public function actionRegister()
+    {
+
     }
 }

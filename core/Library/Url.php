@@ -21,7 +21,6 @@ class Url
         if(empty($segments[count($segments) - 1])){
             unset($segments[count($segments) - 1]);
         }
-
         return $segments;
     }
 

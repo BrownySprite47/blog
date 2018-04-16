@@ -10,9 +10,19 @@ namespace Library;
 
 class Db
 {
+    /**
+     * @var null
+     */
     private static $_db = null;
+    /**
+     * @var \mysqli
+     */
     private $_link;
 
+    /**
+     * Db constructor.
+     * @throws \Exception
+     */
     private function __construct()
     {
         if (!file_exists(__DIR__.'/../Config/db_conf.php')){
@@ -26,6 +36,10 @@ class Db
         $this->_link->set_charset('utf8');
     }
 
+    /**
+     * @return Db|null
+     * @throws \Exception
+     */
     public static function getDb()
     {
         if (is_null(self::$_db)){
@@ -34,4 +48,18 @@ class Db
         return self::$_db;
     }
 
+    /**
+     * @param $sql
+     * @return bool|\mysqli_result
+     * @throws \Exception
+     */
+    public function sendQuery($sql)
+    {
+        $result = $this->_link->query($sql);
+        if (!$result){
+            throw new \Exception($this->_link->error);
+        }
+
+        return $result;
+    }
 }

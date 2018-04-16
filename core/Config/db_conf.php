@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Конфигурация подключения к базе данных
+ */
 return [
     'host' => 'localhost',
     'username' => 'mysql',
