@@ -7,6 +7,7 @@ use Library\Url;
 /**
  * Автозагрузка классов
  * @param $className
+ * @throws Exception
  */
 function __autoload($className)
 {

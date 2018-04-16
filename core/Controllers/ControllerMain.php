@@ -9,9 +9,11 @@
 namespace Controllers;
 use Base\Controller;
 
-
 class ControllerMain extends Controller
 {
+    /**
+     * @throws \Exception
+     */
     public function actionIndex()
     {
 
@@ -19,7 +21,8 @@ class ControllerMain extends Controller
 
     public function actionLogin()
     {
-
+        $this->_view->setTitle('Login');
+        $this->_view->render('login', []);
     }
 
     public function actionLogout()

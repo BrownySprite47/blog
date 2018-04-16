@@ -53,13 +53,31 @@ class Db
      * @return bool|\mysqli_result
      * @throws \Exception
      */
-    public function sendQuery($sql)
+    public function sendSelectQuery($sql)
     {
-        $result = $this->_link->query($sql);
-        if (!$result){
+        $connect = $this->_link->query($sql);
+        if (!$connect){
+            throw new \Exception($this->_link->error);
+        }else{
+            while ($row = $connect->fetch_assoc()){
+                $result[] = $row;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * @param $sql
+     * @return bool|\mysqli_result
+     * @throws \Exception
+     */
+    public function sendIUDQuery($sql)
+    {
+        $connect = $this->_link->query($sql);
+        if (!$connect){
             throw new \Exception($this->_link->error);
         }
 
-        return $result;
+        return $connect;
     }
 }

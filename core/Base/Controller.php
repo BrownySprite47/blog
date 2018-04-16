@@ -11,5 +11,16 @@ namespace Base;
 
 abstract class Controller
 {
+    protected $_view;
+
+    /**
+     * Controller constructor.
+     */
+    public function __construct()
+    {
+        $this->_view = new View();
+        $this->_view->setLayout('main');
+    }
+
     abstract public function actionIndex();
 }

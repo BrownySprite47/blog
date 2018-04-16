@@ -11,6 +11,9 @@ namespace Library;
 
 class Auth
 {
+    /**
+     * @return bool
+     */
     public function isGuest()
     {
         if(empty($_SESSION['user']))
@@ -20,6 +23,10 @@ class Auth
         return false;
     }
 
+    /**
+     * @param $role
+     * @return bool
+     */
     public static function canAccess($role)
     {
         if($_SESSION['user']['role'] == $role)
@@ -29,12 +36,19 @@ class Auth
         return false;
     }
 
+    /**
+     * @param $id
+     * @param $role
+     */
     public static function login($id, $role)
     {
         $_SESSION['user']['id'] = $id;
         $_SESSION['user']['role'] = $role;
     }
 
+    /**
+     *
+     */
     public static function logout()
     {
         session_unset();
