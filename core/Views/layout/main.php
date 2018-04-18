@@ -8,6 +8,6 @@
     <title><?= $this->title; ?></title>
 </head>
 <body>
-    <?php include $this->basePath.$tplName.'.php'; ?>
+    <?php include $this->basePath.'/../views/templates/'.$tplName.'.php'; ?>
 </body>
 </html>

@@ -80,4 +80,8 @@ class Db
 
         return $connect;
     }
+
+    public function getSafeData($data){
+        return $this->_link->real_escape_string($data);
+    }
 }

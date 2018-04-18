@@ -14,7 +14,7 @@ class Auth
     /**
      * @return bool
      */
-    public function isGuest()
+    public static function isGuest()
     {
         if(empty($_SESSION['user']))
         {

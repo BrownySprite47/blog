@@ -11,7 +11,7 @@ namespace Base;
 
 class View
 {
-    public $basePath = '/../views/templates/';
+    public $basePath = __DIR__;
     protected $title;
     protected $seo = [];
     protected $css = [];
@@ -25,8 +25,7 @@ class View
      */
     public function render($tplName, $data)
     {
-        include __DIR__.'/../views/layout/'.$this->_layout.'.php';
-        //echo $this->basePath;
+        include $this->_layout;
     }
 
     /**
@@ -66,7 +65,7 @@ class View
      */
     public function setLayout($layout)
     {
-        $this->_layout = __DIR__.'/../views/layout/'.$this->_layout.'.php';
+        $this->_layout = __DIR__.'/../views/layout/'.$layout.'.php';
     }
 
     /**
