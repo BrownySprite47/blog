@@ -44,6 +44,8 @@ class Auth
     {
         $_SESSION['user']['id'] = $id;
         $_SESSION['user']['role'] = $role;
+
+        var_dump($_SESSION);
     }
 
     /**

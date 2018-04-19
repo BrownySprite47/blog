@@ -56,7 +56,8 @@ abstract class BaseForm
      */
     public function load($data)
     {
-       //var_dump($data);
+        //echo '<pre>';
+        //var_dump($data);
         foreach ($data as $propName => $propValue) {
             if (property_exists(static::class, $propName)){
                 $propValue = $this->_db->getSafeData($propValue);
@@ -66,8 +67,8 @@ abstract class BaseForm
                 return false;
             }
         }
-
         return true;
+
     }
 
     /**

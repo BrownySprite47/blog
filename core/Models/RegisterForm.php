@@ -17,7 +17,7 @@ class RegisterForm extends BaseForm
     public $password;
     public $password_confirm;
 
-    protected $_tableName = 'user';
+    protected $_tableName = 'users';
     /**
      * @return mixed
      */
@@ -38,7 +38,7 @@ class RegisterForm extends BaseForm
     {
         //$password = md5($this->password);
         $password = $this->password;
-        $sql = "INSERT INTO users ('login', 'password') VALUES ('{$this->login}', '{$password}')";
+        $sql = "INSERT INTO {$this->_tableName} (login, password) VALUES ('{$this->login}', '{$password}')";
 
         $result = $this->_db->sendIUDQuery($sql);
         if (!$result){

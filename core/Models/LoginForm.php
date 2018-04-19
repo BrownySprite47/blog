@@ -16,6 +16,8 @@ class LoginForm extends BaseForm
 {
     public $login;
     public $password;
+
+    protected $_tableName = 'users';
     /**
      * @return mixed
      */
@@ -35,11 +37,11 @@ class LoginForm extends BaseForm
     {
         //$password = md5($this->password);
         $password = $this->password;
-        $sql = "SELECT id, role FROM users WHERE login = '{$this->login}' and password = '{$password}'";
+        $sql = "SELECT id, role FROM {$this->_tableName} WHERE login = '{$this->login}' and password = '{$password}'";
 
         $user = $this->_db->sendSelectQuery($sql);
         if ($user){
-            Auth::login($user['id'], $user['role']);
+            Auth::login($user[0]['id'], $user[0]['role']);
             return true;
         }else{
             return false;
