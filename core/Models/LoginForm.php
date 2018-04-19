@@ -35,13 +35,16 @@ class LoginForm extends BaseForm
      */
     public function doLogin()
     {
-        //$password = md5($this->password);
-        $password = $this->password;
+        $password = md5($this->password);
+        //$password = $this->password;
         $sql = "SELECT id, role FROM {$this->_tableName} WHERE login = '{$this->login}' and password = '{$password}'";
 
-        $user = $this->_db->sendSelectQuery($sql);
-        if ($user){
-            Auth::login($user[0]['id'], $user[0]['role']);
+        $res = $this->_db->sendQuery($sql);
+        //var_dump($res);
+        if ($res->num_rows > 0){
+            $user = $res->fetch_assoc();
+            //var_dump($user);
+            Auth::login($user['id'], $user['role']);
             return true;
         }else{
             return false;

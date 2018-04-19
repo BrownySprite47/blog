@@ -53,25 +53,25 @@ class Db
      * @return bool|\mysqli_result
      * @throws \Exception
      */
-    public function sendSelectQuery($sql)
-    {
-        $connect = $this->_link->query($sql);
-        if (!$connect){
-            throw new \Exception($this->_link->error);
-        }else{
-            while ($row = $connect->fetch_assoc()){
-                $result[] = $row;
-            }
-        }
-        return $result;
-    }
+//    public function sendSelectQuery($sql)
+//    {
+//        $connect = $this->_link->query($sql);
+//        if (!$connect){
+//            throw new \Exception($this->_link->error);
+//        }else{
+//            while ($row = $connect->fetch_assoc()){
+//                $result[] = $row;
+//            }
+//        }
+//        return $result;
+//    }
 
     /**
      * @param $sql
      * @return bool|\mysqli_result
      * @throws \Exception
      */
-    public function sendIUDQuery($sql)
+    public function sendQuery($sql)
     {
         $connect = $this->_link->query($sql);
         if (!$connect){
@@ -81,7 +81,20 @@ class Db
         return $connect;
     }
 
+    /**
+     * @param $data
+     * @return string
+     */
     public function getSafeData($data){
         return $this->_link->real_escape_string($data);
+    }
+
+    /**
+     * возвращает автоматически генерируемый ID, используя последний запрос
+     * @return mixed
+     */
+    public function getLastInsertId()
+    {
+        return $this->_link->insert_id;
     }
 }

@@ -10,6 +10,7 @@ namespace Models;
 
 
 use Base\BaseForm;
+use Library\Auth;
 
 class RegisterForm extends BaseForm
 {
@@ -36,15 +37,19 @@ class RegisterForm extends BaseForm
      */
     public function doRegister()
     {
-        //$password = md5($this->password);
-        $password = $this->password;
+        $password = md5($this->password);
+        //$password = $this->password;
         $sql = "INSERT INTO {$this->_tableName} (login, password) VALUES ('{$this->login}', '{$password}')";
 
-        $result = $this->_db->sendIUDQuery($sql);
+        $result = $this->_db->sendQuery($sql);
         if (!$result){
             $this->_errors['register'] = 'Error!';
             return false;
         }
+        // авторизовываем пользователя сразу поле регистрации
+        $id= $this->_db->getLastInsertId();
+        $role = 'user';
+        Auth::login($id, $role);
         return true;
     }
 }

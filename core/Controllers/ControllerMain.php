@@ -34,11 +34,8 @@ class ControllerMain extends Controller
 
             $model= new LoginForm();
             if (Request::isPost()){
-                //echo 1;
                 if ($model->load(Request::getPost()) and $model->validate()){
-                    //echo 2;
                     if ($model->doLogin()){
-                        //echo 3;
                         header('Location: /');
                     }
                 }
@@ -47,7 +44,7 @@ class ControllerMain extends Controller
             $this->_view->setTitle('Login');
             $this->_view->render('login', ['model' => $model]);
         }else{
-            throw  new HttpException('Forbidden', '403');
+            throw new HttpException('Forbidden', '403');
         }
     }
 
@@ -60,7 +57,7 @@ class ControllerMain extends Controller
             Auth::logout();
             header("Location: /");
         }else{
-            throw  new HttpException('Forbidden', '403');
+            throw new HttpException('Forbidden', '403');
         }
 
     }
@@ -83,7 +80,7 @@ class ControllerMain extends Controller
             $this->_view->setTitle('Registration');
             $this->_view->render('registration', ['model' => $model]);
         }else{
-            throw new HttpException('Forbidden'. '403');
+            throw new HttpException('Forbidden', '403');
         }
     }
 }

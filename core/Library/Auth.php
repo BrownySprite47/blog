@@ -45,7 +45,7 @@ class Auth
         $_SESSION['user']['id'] = $id;
         $_SESSION['user']['role'] = $role;
 
-        var_dump($_SESSION);
+        //var_dump($_SESSION);
     }
 
     /**
@@ -55,5 +55,10 @@ class Auth
     {
         session_unset();
         session_destroy();
+    }
+
+    public static function getUserId()
+    {
+        return $_SESSION['user']['id'];
     }
 }

@@ -57,8 +57,8 @@ class Validator
     protected function unique($field)
     {
         $sql = "SELECT * FROM {$this->table} WHERE {$field} = '{$this->_data[$field]}'";
-        $result =  Db::getDb()->sendSelectQuery($sql);
-        if ($result){
+        $result =  Db::getDb()->sendQuery($sql);
+        if ($result->num_rows > 0){
             $this->addError($field, $field.' is not unique');
         }
     }

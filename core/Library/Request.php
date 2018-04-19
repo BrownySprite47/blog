@@ -41,17 +41,24 @@ class Request
     /**
      * @return mixed
      */
-    public static function getPost()
+    public static function getPost($param = null)
     {
-        //var_dump($_POST);
-        return $_POST;
+        if (is_null($param)){
+            return $_POST;
+        }else{
+            return $_POST[$param];
+        }
     }
 
     /**
      * @return mixed
      */
-    public static function getGet()
+    public static function getGet($param = null)
     {
-        return $_GET;
+        if (is_null($param)){
+            return $_GET;
+        }else{
+            return $_GET[$param];
+        }
     }
 }

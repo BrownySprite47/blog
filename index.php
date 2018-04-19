@@ -25,16 +25,16 @@ $action = (is_null($actionName)) ? 'actionIndex' : 'action'.ucfirst($actionName)
 try{
     $fileName = 'core/'.str_replace('\\', '/', $controller) . '.php';
     if (!file_exists($fileName)){
-        throw new \Library\HttpException('Not found', '404');
+        throw new Library\HttpException('Not found', '404');
     }
     $controller = new $controller();
     if (!method_exists($controller, $action)){
-        throw new \Library\HttpException('Not found', '404');
+        throw new Library\HttpException('Not found', '404');
     }
     $controller->$action();
-}catch (\Library\HttpException $e){
+}catch (Library\HttpException $e){
     header("HTTP/1.1 ".$e->getCode().' '.$e->getMessage());
-    die('Page Not Found');
+    die($e->getMessage());
 }catch (\Exception $e){
     die($e->getMessage());
 }
