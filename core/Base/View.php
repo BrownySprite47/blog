@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 12.04.2018
  * Time: 17:16
  */
 
-namespace Base;
+namespace Core\Base;
 
 
 class View

@@ -6,11 +6,11 @@
  * Time: 15:57
  */
 
-namespace Models;
+namespace Core\Models;
 
 
-use Base\BaseForm;
-use Library\Auth;
+use Core\Base\BaseForm;
+use Core\Library\Auth;
 
 class RegisterForm extends BaseForm
 {

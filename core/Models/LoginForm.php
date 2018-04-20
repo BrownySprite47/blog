@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 18.04.2018
  * Time: 14:42
  */
 
-namespace Models;
+namespace Core\Models;
 
 
-use Base\BaseForm;
-use Library\Auth;
+use Core\Base\BaseForm;
+use Core\Library\Auth;
 
 class LoginForm extends BaseForm
 {
@@ -47,6 +47,7 @@ class LoginForm extends BaseForm
             Auth::login($user['id'], $user['role']);
             return true;
         }else{
+            $this->_errors['loginError'] = 'Wrong login or password!';
             return false;
         }
     }

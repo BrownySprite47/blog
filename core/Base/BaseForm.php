@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 18.04.2018
  * Time: 14:26
  */
 
-namespace Base;
+namespace Core\Base;
 
 
-use Library\Db;
-use Library\Validator;
+use Core\Library\Db;
+use Core\Library\Validator;
 
 abstract class BaseForm
 {
@@ -56,8 +56,8 @@ abstract class BaseForm
      */
     public function load($data)
     {
-        //echo '<pre>';
-        //var_dump($data);
+//        echo '<pre>';
+//        var_dump($data);
         foreach ($data as $propName => $propValue) {
             if (property_exists(static::class, $propName)){
                 $propValue = $this->_db->getSafeData($propValue);

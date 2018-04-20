@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 12.04.2018
  * Time: 16:57
  */
 
-namespace Library;
+namespace Core\Library;
 
 
 class Auth

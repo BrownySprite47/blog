@@ -1,22 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 19.04.2018
  * Time: 13:01
  */
 
-namespace Models;
+namespace Core\Models;
 
 
-use Base\BaseForm;
-use Library\Auth;
+use Core\Base\BaseForm;
+use Core\Library\Auth;
 
 class PostForm extends BaseForm
 {
     public $id;
     public $title;
     public $content;
+
     protected $_tableName = 'post';
 
     /**

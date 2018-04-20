@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 18.04.2018
  * Time: 14:10
  */
 
-namespace Library;
+namespace Core\Library;
 
 
 class Validator

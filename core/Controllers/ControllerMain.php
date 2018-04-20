@@ -1,18 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: BestUser1
+ * RegisterForm: BestUser1
  * Date: 12.04.2018
  * Time: 13:03
  */
 
-namespace Controllers;
-use Base\Controller;
-use Library\Auth;
-use Library\HttpException;
-use Library\Request;
-use Models\LoginForm;
-use Models\RegisterForm;
+namespace Core\Controllers;
+
+use Core\Base\Controller;
+use Core\Library\Auth;
+use Core\Library\HttpException;
+use Core\Library\Request;
+use Core\Models\Posts;
+use Core\Models\LoginForm;
+use Core\Models\RegisterForm;
 
 class ControllerMain extends Controller
 {
@@ -21,7 +23,10 @@ class ControllerMain extends Controller
      */
     public function actionIndex()
     {
-
+        $model = new Posts();
+        $this->_view->setTitle('Главная');
+        $this->_view->setCss('style.css');
+        $this->_view->render('posts', ['model' => $model]);
     }
 
     /**
@@ -41,7 +46,8 @@ class ControllerMain extends Controller
                 }
             }
 
-            $this->_view->setTitle('Login');
+            $this->_view->setTitle('Вход');
+            $this->_view->setCss('style.css');
             $this->_view->render('login', ['model' => $model]);
         }else{
             throw new HttpException('Forbidden', '403');
@@ -72,12 +78,13 @@ class ControllerMain extends Controller
             $model = new RegisterForm();
             if (Request::isPost()) {
                 if ($model->load(Request::getPost()) and $model->validate()) {
-                      if ($model->doRegister()) {
+                    if ($model->doRegister()) {
                         header('Location: /');
                     }
                 }
             }
-            $this->_view->setTitle('Registration');
+            $this->_view->setTitle('Регистрация');
+            $this->_view->setCss('style.css');
             $this->_view->render('registration', ['model' => $model]);
         }else{
             throw new HttpException('Forbidden', '403');

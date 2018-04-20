@@ -1,14 +1,18 @@
+<div class="myContainer">
+    <h2><?= $this->title; ?></h2>
+    <form method="post">
+        <input class="fields" type="text" name="login" placeholder="Логин" value="<?= (Core\Library\Request::isPost()) ? $data['model']->login : ''?>"><br>
+        <input class="fields" type="password" placeholder="Пароль" name="password" value="<?= (Core\Library\Request::isPost()) ? $data['model']->password : ''?>"><br>
+        <input class="fields" type="password" placeholder="Повторите пароль" name="password_confirm" value="<?= (Core\Library\Request::isPost()) ? $data['model']->password_confirm : ''?>"><br>
+        <input class="btn btn-success" type="submit" value="Зарегистрироваться" id="submit">
+    </form>
+</div>
 <?php
-echo '<pre>';
-    $errors = $data['model']->getErrors();
-    if (!empty($errors)){
-        var_dump($errors);
-    }
-?>
-<h2>REGISTRATION</h2>
-<form method="post">
-    <input type="text" name="login" value="<?= (\Library\Request::isPost()) ? $data['model']->login : ''?>"><br>
-    <input type="password" name="password" value="<?= (\Library\Request::isPost()) ? $data['model']->password : ''?>"><br>
-    <input type="password" name="password_confirm" value="<?= (\Library\Request::isPost()) ? $data['model']->password_confirm : ''?>"><br>
-    <input type="submit" id="submit">
-</form>
+$errors = $data['model']->getErrors();
+if (!empty($errors)): ?>
+    <div class="container-errors">
+        <?php foreach ($errors as $field => $error): ?>
+            <p class="validErrorForm"><?= $field." : ".$error ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
